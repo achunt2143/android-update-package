@@ -38,6 +38,11 @@ deploy_luneos() {
     echo "Cleaning up left over artifacts ..."
     cleanup_artifacts
 
+    echo "Remove firstboot flag"
+    if [ -f /data/luneos-data/.firstboot_done ]; then
+        rm -f /data/luneos-data/.firstboot_done
+    fi
+
     echo "Deploying LuneOS ..."
     if [ -d $tmp_extract ]; then
         rm -rf $tmp_extract
